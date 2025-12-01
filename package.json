@@ -1,0 +1,25 @@
+{
+  "name": "v6",
+  "version": "1.0.0",
+  "description": "CareConnect is a static website for booking doctor appointments. It is containerized with Docker and configured for deployment to AWS EKS.",
+  "main": "script.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vis-hn-u/v6-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vis-hn-u/v6-/issues"
+  },
+  "homepage": "https://github.com/vis-hn-u/v6-#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemailer": "^7.0.11"
+  }
+}

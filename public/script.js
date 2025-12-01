@@ -4,11 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const doctorCards = document.querySelectorAll('.doctor-card');
     const modalDoctorName = document.getElementById('modal-doctor-name');
     const bookingForm = document.getElementById('bookingForm');
-    
+
     // Chatbot functionality
     const chatbotIcon = document.getElementById('chatbot-icon');
     const chatbox = document.getElementById('chatbox');
-    
+
     chatbotIcon.addEventListener('click', () => {
         chatbox.classList.toggle('active');
     });
@@ -51,8 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Form Data:', formData); // For debugging
 
         try {
-            // Replace with your back-end API endpoint
-            const response = await fetch('YOUR_BACKEND_API_URL/book-appointment', {
+            const response = await fetch('/api/book-appointment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

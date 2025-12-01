@@ -1,10 +1,17 @@
-# Use a lightweight Nginx image as the base.
-FROM nginx:alpine
+FROM node:18-alpine
 
-# Copy your local project files into the Nginx web root directory inside the container.
-# The `.` represents the current directory.
-# `/usr/share/nginx/html` is where Nginx serves files from.
-COPY . /usr/share/nginx/html
+ENV NODE_ENV=production
 
-# Expose port 80. This is the default port for web servers.
-EXPOSE 80
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm ci --only=production
+
+COPY . .
+
+EXPOSE 3000
+
+USER node
+
+CMD ["node", "server.js"]
