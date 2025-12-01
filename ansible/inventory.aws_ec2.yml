@@ -1,0 +1,11 @@
+plugin: aws_ec2
+regions:
+  - ap-south-1
+filters:
+  tag:Name: CareConnect-ASG-Instance
+  instance-state-name: running
+keyed_groups:
+  - key: tags.Name
+    prefix: tag
+compose:
+  ansible_host: public_ip_address

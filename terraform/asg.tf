@@ -8,7 +8,10 @@ resource "aws_launch_template" "app_lt" {
     name = aws_iam_instance_profile.ec2_profile.name
   }
 
-  vpc_security_group_ids = [aws_security_group.app_sg.id]
+  network_interfaces {
+    associate_public_ip_address = true
+    security_groups             = [aws_security_group.app_sg.id]
+  }
 
   user_data = base64encode(<<-EOF
               #!/bin/bash

@@ -4,3 +4,4 @@ node_modules/
 *.tfstate.backup
 .env
 .DS_Store
+*.pem

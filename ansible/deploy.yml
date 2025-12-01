@@ -1,0 +1,32 @@
+---
+- name: Deploy CareConnect App
+  hosts: tag_CareConnect_ASG_Instance
+  become: yes
+  vars:
+    ecr_repo: "{{ lookup('env', 'ECR_REPO_URL') }}"
+    region: ap-south-1
+
+  tasks:
+    - name: Login to ECR
+      shell: "aws ecr get-login-password --region {{ region }} | docker login --username AWS --password-stdin {{ ecr_repo }}"
+
+    - name: Pull latest image
+      docker_image:
+        name: "{{ ecr_repo }}"
+        tag: latest
+        source: pull
+        force_source: yes
+
+    - name: Stop and remove existing container
+      docker_container:
+        name: careconnect
+        state: absent
+
+    - name: Run new container
+      docker_container:
+        name: careconnect
+        image: "{{ ecr_repo }}:latest"
+        state: started
+        ports:
+          - "80:3000"
+        restart_policy: always
